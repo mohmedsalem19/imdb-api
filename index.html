@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>imdb</title>
+	<link href='https://fonts.googleapis.com/css?family=Bitter:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway:500italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oxygen:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato:700italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<style type="text/css">
+	body{
+		background: #CACACA ;
+	}
+	.header{
+		    display: block;
+    text-align: center;
+	}
+	.info{
+		    display: none;
+    width: 90%;
+    margin-left: 5%;
+    background: #ABABAB;
+    padding: 5px 10px;
+    margin-top: 20px;
+    border-radius: 6px;
+    border: 2px solid #9A9A9A;
+        
+        min-height: 530px;
+	}
+	img#imdblogo{
+	    padding-right: 10px;
+	}
+	h1.mainIntro{
+		    font-family: 'Bitter', serif;
+    color: #673AB7;
+    margin-top: -6px;
+	}
+	.searchBox{
+		    display: block;
+    	text-align: center;
+	}
+	input#film{
+		    width: 450px;
+    padding: 10px 5px;
+    outline: none;
+    font-family: 'Raleway', sans-serif;
+	}
+	input#search{
+		    padding: 11px 20px;
+    background: #673AB7;
+    border: none;
+    color: #fff;
+        cursor: pointer;
+    outline: none;
+    font-family: 'Raleway', sans-serif;
+	}
+	h2#filmNo{
+		    text-align: center;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 27px;
+	}
+	img#poster{
+		    float: left;
+    box-shadow: 4px 12px 12px 6px #7B7B7B;
+        margin-top: -75px;
+	}
+	.righSect{
+		    margin-left: 323px;
+	}
+	img#snappypic{
+		        margin-bottom: 10px;
+	}
+	i#duration{
+	    position: absolute;
+    margin-top: 6px;
+    margin-top: 8px;
+    margin-left: 10px;
+    font-family: 'Oxygen', sans-serif;
+	}
+	i#genere{
+		       position: absolute;
+    margin-top: 6px; 
+    margin-top: 8px;
+    margin-left: 10px;
+    font-family: 'Oxygen', sans-serif;
+	}
+	i#year{
+		       position: absolute;
+    margin-top: 6px; 
+
+    margin-top: 8px;
+    margin-left: 10px;
+    font-family: 'Oxygen', sans-serif;
+	}
+	b#rate{
+		        position: absolute;
+    margin-top: 6px;
+    margin-top: 8px;
+    margin-left: 10px;
+    font-family: 'Oxygen', sans-serif;
+	}
+	i#summery{
+		       position: absolute;
+    margin-top: 6px;
+    margin-top: 8px;
+    margin-left: 10px;
+    font-family: 'Oxygen', sans-serif;
+	}
+	p#summery{
+		font-family: 'Lato', sans-serif;
+		    font-size: 19px;
+	}
+</style>
+<div class="content">
+<div class="header">
+<img src="https://cdn2.iconfinder.com/data/icons/plex-for-android/72/imdb.png" id="imdblogo" /> <h1 class="mainIntro">IMDB Api For Developers Using Js</h1>
+</div>
+<div class="searchBox">
+<input type="text" id="film" name="filmName" placeholder="Write the film name" /><input type="button" id="search" value="Search" />
+</div>
+
+<div class="info">
+	<h2 id="filmNo"></h2>
+	<img src="" id="poster">
+	<div class="righSect">
+	<img id="snappypic" src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/clock-32.png" /><i id="duration"></i><br />
+	<img id="snappypic" src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/tools-32.png" /><i id="genere"></i><br />
+	<img id="snappypic" src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/calendar-32.png" /><i id="year"><b id="yearbold"></b></i><br />
+	<img id="snappypic" src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/heart-32.png" /><b id="rate"></b><br />
+	<p id="summery"></p></div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$('#search').click(function (){
+		$('.info').show();
+		var x = $('#film').val();
+		var y = x.replace(/ /gi, '+');
+		var filmTitle = 'http://www.omdbapi.com/?t='+ y +'&y=&plot=full&r=json';
+		$.getJSON(filmTitle , function(data){
+			$('#filmNo').text(data.Title);
+			$('#poster').attr('src', data.Poster);
+			$('#duration').text(data.Runtime);
+			$('#genere').text(data.Genre);
+			$('#yearbold').text(data.Year);
+			$('#rate').text(data.imdbRating);
+			$('#summery').text(data.Plot);
+
+		});
+		
+	});
+	
+</script>
+</body>
+</html>
