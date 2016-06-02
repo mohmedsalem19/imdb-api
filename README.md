@@ -6,9 +6,9 @@ It uses json to retrieve the data
 <img src="http://i.imgur.com/epqIaUI.jpg" />
 
 
-<b>this how to retrieve the data from the object</b>
-data.Title
-data.Poster
-data.Runtime			
-data.imdbRating
-data.Plot			
+<b>this how to retrieve the data from the object</b><br />
+<li>data.Title</li><br />
+<li>data.Poster</li><br />
+<li>data.Runtime</li><br />			
+<li>data.imdbRating</li><br />
+<li>data.Plot	</li><br />		
